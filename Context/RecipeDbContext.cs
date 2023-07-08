@@ -10,6 +10,7 @@ namespace recipe_book_api.Context
 
         public DbSet<Identity> Identities { get; set; }
         public DbSet<Ingredient> Ingredients { get; set;}
+        public DbSet<Recipe> Recipes { get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -17,6 +18,7 @@ namespace recipe_book_api.Context
 
             modelBuilder.ApplyConfiguration(new IdentityMap());
             modelBuilder.ApplyConfiguration(new IngredientMap());
+            modelBuilder.ApplyConfiguration(new RecipeMap());
         }
     }
 }

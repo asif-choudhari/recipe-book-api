@@ -9,6 +9,7 @@ namespace recipe_book_api.Mappings
         public ApiMappingProfiles()
         {
             CreateMap<Ingredient, IngredientDTO>();
+            CreateMap<Recipe, RecipeDTO>();
         }
     }
 }
