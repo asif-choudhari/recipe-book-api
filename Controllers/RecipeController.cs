@@ -23,6 +23,14 @@ namespace recipe_book_api.Controllers
             return Ok(recipesList);
         }
 
+        [HttpGet]
+        [Route("getRecipeById")]
+        public async Task<IActionResult> GetRecipeById(int id)
+        {
+            var recipe = await recipeService.GetRecipeById(id);
+            return Ok(recipe);
+        }
+
         [HttpPost]
         [Route("addRecipe")]
         public async Task<IActionResult> AddRecipe(Recipe recipe)

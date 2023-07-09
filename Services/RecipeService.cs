@@ -35,6 +35,16 @@ namespace recipe_book_api.Services
             return recipesList;
         }
 
+        public async Task<RecipeDTO> GetRecipeById(int id)
+        {
+            Recipe recipe = await recipeRepository.GetRecipeById(id);
+
+            recipe.Ingredients = JsonSerializer.Deserialize<Ingredient[]>(recipe.IngredientsJSON);
+
+            RecipeDTO recipeResult = mapper.Map<RecipeDTO>(recipe);
+            return recipeResult;
+        }
+
         public async Task AddRecipe(Recipe recipe)
         {
             int id = await identityRepository.GetId(dbName);
