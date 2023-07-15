@@ -18,9 +18,11 @@ builder.Services.AddDbContext<RecipeDbContext>(options =>
 //Repository
 builder.Services.AddScoped<IIdentityRepository, IdentityRepository>();
 builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
+builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
 
 //Servcies
 builder.Services.AddScoped<IIngredientService, IngredientService>();
+builder.Services.AddScoped<IRecipeService, RecipeService>();
 
 //Automapper
 builder.Services.AddAutoMapper(typeof(Program));
@@ -41,9 +43,9 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseSwagger();
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
     app.UseSwaggerUI();
 }
 

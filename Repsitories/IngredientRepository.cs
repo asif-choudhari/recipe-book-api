@@ -56,7 +56,7 @@ namespace recipe_book_api.Repsitories
                 return false;
             }
 
-            recipeDbContext.Remove(ingredient);
+            recipeDbContext.Ingredients.Remove(ingredient);
             await recipeDbContext.SaveChangesAsync();
             return true;
         }
