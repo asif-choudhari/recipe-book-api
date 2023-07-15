@@ -47,14 +47,15 @@ namespace recipe_book_api.Services
 
         public async Task AddIngredients(Ingredient[] ingredients)
         {
+            int numberOfIngredients = ingredients.Length;
+            int id = await identityRepository.GetId(dbName);
+            int newId = id + numberOfIngredients;
+            await identityRepository.UpdateId(dbName, newId);
+
             foreach (var ingredient in ingredients)
             {
-                int id = await identityRepository.GetId(dbName);
-                ingredient.Id = id;
+                ingredient.Id = id++;
                 await ingredientRepository.AddIngredient(ingredient);
-
-                int newId = id + 1;
-                await identityRepository.UpdateId(dbName, newId);
             }
         }
 
